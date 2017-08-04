@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jason.piccolo.repository.RegionMapper">
+
+  <resultMap id="RegionMap" type="com.jason.piccolo.domain.entity.Region">
+    <id column="id" property="id" jdbcType="INTEGER"/>
+    <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+    <result column="name" property="name" jdbcType="VARCHAR"/>
+    <result column="level" property="level" jdbcType="INTEGER"/>
+    <result column="leaf" property="leaf" jdbcType="BIT"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    `id`, `parent_id`, `name`, `level`, `leaf`
+  </sql>
+
+  <select id="findById" resultMap="RegionMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM `region` r WHERE r.`id` = #{id}
+  </select>
+
+  <select id="findByParentId" resultMap="RegionMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM `region` r WHERE r.`parent_id` = #{parentId}
+  </select>
+
+  <select id="findAll" resultMap="RegionMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM `region` r
+  </select>
+
+</mapper>

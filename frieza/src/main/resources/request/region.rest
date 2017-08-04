@@ -1,0 +1,2 @@
+###获取指定id的地区
+GET http://localhost:8080/cyan/api/regions/110000 HTTP/1.1
