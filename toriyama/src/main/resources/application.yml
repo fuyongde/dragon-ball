@@ -10,7 +10,7 @@ spring:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: toriyama.dragon.com
   client:
     register-with-eureka: false
     fetch-registry: false

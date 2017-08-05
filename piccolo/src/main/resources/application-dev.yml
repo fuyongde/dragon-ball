@@ -3,6 +3,9 @@ server:
   context-path: /piccolo
 
 eureka:
+  instance:
+    hostname: piccolo.dragon.com
+    status-page-url-path: /piccolo/info
   client:
     service-url:
-      defaultZone: http://localhost:9000/eureka/
+      defaultZone: http://toriyama.dragon.com:9000/eureka/

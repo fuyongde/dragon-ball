@@ -1,3 +1,9 @@
+server:
+  tomcat:
+    accesslog:
+      enabled: true
+      prefix: frieza_access_log
+
 spring:
   application:
     name: frieza
@@ -17,3 +23,12 @@ logging:
   config: classpath:logback-spring.xml
 mybatis:
   config-location: classpath:mybatis-config.xml
+
+management:
+  security:
+    enabled: false
+
+info:
+  app:
+    name: frieza
+    version: v1.0

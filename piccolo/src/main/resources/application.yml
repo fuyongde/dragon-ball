@@ -1,3 +1,9 @@
+server:
+  tomcat:
+    accesslog:
+      enabled: true
+      prefix: piccolo_access_log
+
 spring:
   application:
     name: piccolo

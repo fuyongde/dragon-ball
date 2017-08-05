@@ -4,10 +4,11 @@ server:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: frieza.dragon.com
+    status-page-url-path: /frieza/info
   client:
     service-url:
-      defaultZone: http://192.168.1.6:9000/eureka/
+      defaultZone: http://toriyama.dragon.com:9000/eureka/
 
 spring:
   datasource:
