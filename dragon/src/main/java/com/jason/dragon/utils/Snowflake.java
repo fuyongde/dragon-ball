@@ -1,5 +1,8 @@
 package com.jason.dragon.utils;
 
+/**
+ * 雪花算法，用于产生id或订单编号
+ */
 public class Snowflake {
     public static final int NODE_SHIFT = 10;
     public static final int SEQ_SHIFT = 12;

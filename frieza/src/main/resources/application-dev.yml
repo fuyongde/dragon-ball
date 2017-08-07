@@ -22,5 +22,5 @@ spring:
       path: /h2
   redis:
     database: 0
-    host: 192.168.1.6
+    host: redis.dragon.com
     port: 6379

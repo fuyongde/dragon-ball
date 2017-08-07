@@ -4,7 +4,7 @@ server:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: piccolo.dragon.com
     status-page-url-path: /piccolo/info
   client:
     service-url:
