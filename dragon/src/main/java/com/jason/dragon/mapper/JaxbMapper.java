@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class JaxbMapper {
 
-  private static ConcurrentMap<Class, JAXBContext> jaxbContexts = new ConcurrentHashMap<Class, JAXBContext>();
+  private static ConcurrentMap<Class, JAXBContext> jaxbContexts = new ConcurrentHashMap<>();
 
   /**
    * Java Object->Xml without encoding.
@@ -70,8 +70,8 @@ public class JaxbMapper {
       CollectionWrapper wrapper = new CollectionWrapper();
       wrapper.collection = root;
 
-      JAXBElement<CollectionWrapper> wrapperElement = new JAXBElement<CollectionWrapper>(new QName(rootName),
-          CollectionWrapper.class, wrapper);
+      JAXBElement<CollectionWrapper> wrapperElement = new JAXBElement<>(new QName(rootName),
+              CollectionWrapper.class, wrapper);
 
       StringWriter writer = new StringWriter();
       createMarshaller(clazz, encoding).marshal(wrapperElement, writer);

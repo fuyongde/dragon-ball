@@ -3,13 +3,13 @@ package com.jason.dragon.utils;
 /**
  * 雪花算法，用于产生id或订单编号
  */
-public class Snowflake {
-    public static final int NODE_SHIFT = 10;
-    public static final int SEQ_SHIFT = 12;
+class Snowflake {
+    private static final int NODE_SHIFT = 10;
+    private static final int SEQ_SHIFT = 12;
 
-    public static final short MIN_NODE = 0;
-    public static final short MAX_NODE = 1024;
-    public static final short MAX_SEQUENCE = 4096;
+    private static final short MIN_NODE = 0;
+    private static final short MAX_NODE = 1024;
+    private static final short MAX_SEQUENCE = 4096;
 
     private short sequence;
     private long referenceTime;

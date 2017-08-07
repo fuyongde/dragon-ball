@@ -17,6 +17,7 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,7 +26,7 @@ public class RegionServiceImpl implements RegionService, InitializingBean {
   private static final Logger logger = LoggerFactory.getLogger(RegionServiceImpl.class);
   private static final Cache<Integer, Region> allRegionCache = CacheBuilder.newBuilder().build();
   private static final Cache<Integer, Region> regionCache = CacheBuilder.newBuilder().maximumSize(1000).build();
-  private static final Cache<Integer, List<Region>> regionListCache = CacheBuilder.newBuilder().maximumSize(500).build();
+  private static final Cache<Integer, List<Region>> regionListCache = CacheBuilder.newBuilder().maximumSize(1000).build();
   @Resource
   private RegionMapper regionMapper;
 
@@ -35,24 +36,22 @@ public class RegionServiceImpl implements RegionService, InitializingBean {
       Region region = regionCache.get(id, () -> regionMapper.findById(id));
       RegionDTO regionDTO = BeanMapper.map(region, RegionDTO.class);
       if (!region.getLeaf()) {
-        List<Region> regions = regionListCache.get(region.getId(), () -> regionMapper.findByParentId(region.getId()));
+        List<Region> regions = regionListCache.get(id, () -> regionMapper.findByParentId(id));
         List<RegionDTO> regionDTOS = BeanMapper.mapList(regions, RegionDTO.class);
         regionDTO.setChild(regionDTOS);
       }
       return regionDTO;
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (ExecutionException e) {
       throw new ServiceException(100001);
     }
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   public List<RegionDTO> getByParentId(Integer parentId) {
     try {
       List<Region> regions = regionListCache.get(parentId, () -> regionMapper.findByParentId(parentId));
       return BeanMapper.mapList(regions, RegionDTO.class);
-    } catch (Exception e) {
+    } catch (ExecutionException e) {
       throw new ServiceException(100001);
     }
   }
@@ -131,7 +130,6 @@ public class RegionServiceImpl implements RegionService, InitializingBean {
         children.forEach(nodeStack::push);
       }
     }
-
     return results;
   }
 

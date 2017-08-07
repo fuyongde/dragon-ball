@@ -1,8 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2005, 2014 springside.github.io
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- *******************************************************************************/
 package com.jason.dragon.security;
 
 import java.io.UnsupportedEncodingException;
@@ -13,7 +8,7 @@ import com.jason.dragon.utils.Exceptions;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
 /**
  * 封装各种格式的编码解码工具类.
@@ -98,7 +93,7 @@ public class Encodes {
 	 * Xml 转码.
 	 */
 	public static String escapeXml(String xml) {
-		return StringEscapeUtils.escapeXml(xml);
+		return StringEscapeUtils.escapeXml10(xml);
 	}
 
 	/**
