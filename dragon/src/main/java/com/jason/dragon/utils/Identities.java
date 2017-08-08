@@ -44,8 +44,8 @@ public class Identities {
 		return Encodes.encodeBase62(randomBytes);
 	}
 
-	public static long snowflake() {
-		Snowflake snowflake = new Snowflake(1);
+	public static long snowflake(int node) {
+		Snowflake snowflake = new Snowflake(node);
 		return snowflake.next();
 	}
 }
