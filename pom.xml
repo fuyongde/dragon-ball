@@ -55,6 +55,37 @@
 
   <dependencyManagement>
     <dependencies>
+
+      <dependency>
+        <groupId>com.jason</groupId>
+        <artifactId>dragon</artifactId>
+        <version>1.0-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.jason</groupId>
+        <artifactId>frieza</artifactId>
+        <version>1.0-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.jason</groupId>
+        <artifactId>kuririn</artifactId>
+        <version>1.0-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.jason</groupId>
+        <artifactId>piccolo</artifactId>
+        <version>1.0-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.jason</groupId>
+        <artifactId>toriyama</artifactId>
+        <version>1.0-SNAPSHOT</version>
+      </dependency>
+
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
