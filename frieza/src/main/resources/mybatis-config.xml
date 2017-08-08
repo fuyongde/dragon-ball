@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <typeAliases>
-    <package name="com.jason.piccolo.domain.entity"/>
+    <package name="com.jason.frieza.domain.entity"/>
   </typeAliases>
   <mappers>
     <mapper resource="mybatis/RegionMapper.xml"/>

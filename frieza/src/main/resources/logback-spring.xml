@@ -40,15 +40,15 @@
     </filter>
   </appender>
 
-  <logger name="com.jason.piccolo" level="ERROR">
+  <logger name="com.jason.frieza" level="ERROR">
     <appender-ref ref="errorFile"/>
   </logger>
 
-  <logger name="com.jason.piccolo" level="INFO">
+  <logger name="com.jason.frieza" level="INFO">
     <appender-ref ref="infoFile"/>
   </logger>
 
-  <logger name="com.jason.piccolo.repository" level="DEBUG">
+  <logger name="com.jason.frieza.repository" level="DEBUG">
     <appender-ref ref="infoFile"/>
   </logger>
 
