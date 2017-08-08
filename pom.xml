@@ -11,6 +11,7 @@
     <module>frieza</module>
     <module>piccolo</module>
     <module>toriyama</module>
+    <module>kuririn</module>
   </modules>
   <packaging>pom</packaging>
 

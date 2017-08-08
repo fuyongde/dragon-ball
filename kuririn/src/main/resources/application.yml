@@ -1,0 +1,25 @@
+server:
+  tomcat:
+    accesslog:
+      enabled: true
+      prefix: kuririn_access_log
+
+spring:
+  application:
+    name: kuririn
+  profiles:
+    active: dev
+  http:
+    converters:
+      preferred-json-mapper: jackson
+    encoding:
+      charset: UTF-8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: non_null
+    time-zone: GMT+8
+
+logging:
+  config: classpath:logback-spring.xml
+mybatis:
+  config-location: classpath:mybatis-config.xml
