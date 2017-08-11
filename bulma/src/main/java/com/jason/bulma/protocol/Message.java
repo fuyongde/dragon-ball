@@ -4,8 +4,6 @@ import java.util.Date;
 
 public interface Message {
 
-    String getFrom();
-
     String getReplyTo();
 
     String[] getTo();

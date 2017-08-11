@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class MailMessage implements Message {
 
-    private String from;
     private String replyTo;
     private String[] to;
     private String[] cc;
@@ -12,15 +11,6 @@ public class MailMessage implements Message {
     private Date sentDate;
     private String subject;
     private String text;
-
-    @Override
-    public String getFrom() {
-        return from;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
 
     @Override
     public String getReplyTo() {
