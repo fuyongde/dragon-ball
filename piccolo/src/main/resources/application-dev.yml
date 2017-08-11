@@ -2,6 +2,10 @@ server:
   port: 9200
   context-path: /piccolo
 
+spring:
+  activemq:
+    broker-url: failover:(tcp://activemq1.dafy.com:61616,tcp://activemq2.dafy.com:61616,tcp://activemq3.dafy.com:61616)
+
 eureka:
   instance:
     hostname: piccolo.dragon.com

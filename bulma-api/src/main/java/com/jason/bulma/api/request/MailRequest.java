@@ -5,7 +5,6 @@ import java.util.Date;
 
 public class MailRequest implements Serializable {
 
-    private String from;
     private String replyTo;
     private String[] to;
     private String[] cc;
@@ -13,14 +12,6 @@ public class MailRequest implements Serializable {
     private Date sentDate;
     private String subject;
     private String text;
-
-    public String getFrom() {
-        return from;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
 
     public String getReplyTo() {
         return replyTo;
