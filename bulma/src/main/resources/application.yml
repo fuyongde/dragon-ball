@@ -1,0 +1,32 @@
+server:
+  port: 9400
+  context-path: /bulma
+
+spring:
+  application:
+    name: bulma
+  mail:
+    host: smtp.126.com
+    username: fuyongde@126.com
+    password: de2441009fu
+    default-encoding: UTF-8
+  http:
+    converters:
+      preferred-json-mapper: jackson
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: non_null
+    time-zone: GMT+8
+  activemq:
+    broker-url: failover:(tcp://activemq1.dafy.com:61616,tcp://activemq2.dafy.com:61616,tcp://activemq3.dafy.com:61616)
+
+eureka:
+  instance:
+    hostname: bulma.dragon.com
+    status-page-url-path: /bulma/info
+  client:
+    service-url:
+      defaultZone: http://toriyama.dragon.com:9000/eureka/
+
+logging:
+  config: classpath:logback-spring.xml
