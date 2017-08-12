@@ -4,8 +4,8 @@ server:
 
 eureka:
   instance:
-    hostname: kuririn.dragon.com
+    hostname: www.dragon.com
     status-page-url-path: /kuririn/info
   client:
     service-url:
-      defaultZone: http://toriyama.dragon.com:9000/eureka/
+      defaultZone: http://www.dragon.com:9000/eureka/
