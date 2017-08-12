@@ -18,39 +18,39 @@ import java.io.IOException;
 @Component
 public class MailMessageSender implements MessageSender {
 
-    private static Logger logger = LoggerFactory.getLogger(MailMessageSender.class);
+  private static Logger logger = LoggerFactory.getLogger(MailMessageSender.class);
 
-    @Autowired
-    private MailSender javaMailSender;
+  @Autowired
+  private MailSender javaMailSender;
 
-    @Autowired
-    private MailProperties mailProperties;
+  @Autowired
+  private MailProperties mailProperties;
 
-    @Override
-    public void send(Message message) {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom(mailProperties.getUsername());
-        mailMessage.setTo(message.getTo());
-        mailMessage.setSubject(message.getSubject());
-        mailMessage.setText(message.getSubject());
-        javaMailSender.send(mailMessage);
-    }
+  @Override
+  public void send(Message message) {
+    SimpleMailMessage mailMessage = new SimpleMailMessage();
+    mailMessage.setFrom(mailProperties.getUsername());
+    mailMessage.setTo(message.getTo());
+    mailMessage.setSubject(message.getSubject());
+    mailMessage.setText(message.getSubject());
+    javaMailSender.send(mailMessage);
+  }
 
-    @JmsListener(destination = "mail.queue")
-    public void receiveQueue(String text) throws IOException {
+  @JmsListener(destination = "mail.queue")
+  public void receiveQueue(String text) throws IOException {
 
-        logger.info("send mail");
+    logger.info("send mail");
 
-        logger.info(text);
+    logger.info(text);
 
-        ObjectMapper mapper = new ObjectMapper();
-        MailMessage message = mapper.readValue(text, MailMessage.class);
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom(mailProperties.getUsername());
-        mailMessage.setTo(message.getTo());
-        mailMessage.setSubject(message.getSubject());
-        mailMessage.setText(message.getSubject());
-        javaMailSender.send(mailMessage);
-    }
+    ObjectMapper mapper = new ObjectMapper();
+    MailMessage message = mapper.readValue(text, MailMessage.class);
+    SimpleMailMessage mailMessage = new SimpleMailMessage();
+    mailMessage.setFrom(mailProperties.getUsername());
+    mailMessage.setTo(message.getTo());
+    mailMessage.setSubject(message.getSubject());
+    mailMessage.setText(message.getSubject());
+    javaMailSender.send(mailMessage);
+  }
 
 }

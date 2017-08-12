@@ -4,5 +4,5 @@ import com.jason.bulma.protocol.Message;
 
 public interface MessageSender {
 
-    void send(Message message);
+  void send(Message message);
 }

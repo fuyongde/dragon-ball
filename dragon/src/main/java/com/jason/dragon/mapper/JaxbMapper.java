@@ -71,7 +71,7 @@ public class JaxbMapper {
       wrapper.collection = root;
 
       JAXBElement<CollectionWrapper> wrapperElement = new JAXBElement<>(new QName(rootName),
-              CollectionWrapper.class, wrapper);
+          CollectionWrapper.class, wrapper);
 
       StringWriter writer = new StringWriter();
       createMarshaller(clazz, encoding).marshal(wrapperElement, writer);

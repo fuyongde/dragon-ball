@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/mails")
 public class MailRestController {
 
-    @Autowired
-    private MessageSender mailMessageSender;
+  @Autowired
+  private MessageSender mailMessageSender;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String send(@RequestBody MailRequest mailRequest) {
-        MailMessage mailMessage = BeanMapper.map(mailRequest, MailMessage.class);
-        mailMessageSender.send(mailMessage);
-        return "success";
-    }
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public String send(@RequestBody MailRequest mailRequest) {
+    MailMessage mailMessage = BeanMapper.map(mailRequest, MailMessage.class);
+    mailMessageSender.send(mailMessage);
+    return "success";
+  }
 }

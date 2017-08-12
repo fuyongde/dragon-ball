@@ -21,6 +21,6 @@ public class PiccoloApplication {
   @Bean
   public Destination mailDestination() {
     return ActiveMQDestination
-            .createDestination("mail.queue", ActiveMQDestination.QUEUE_TYPE);
+        .createDestination("mail.queue", ActiveMQDestination.QUEUE_TYPE);
   }
 }

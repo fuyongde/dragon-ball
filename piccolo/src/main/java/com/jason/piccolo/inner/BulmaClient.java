@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @FeignClient("bulma")
 public interface BulmaClient {
 
-    @PostMapping("/bulma/api/mails")
-    String mail(MailRequest mailRequest);
+  @PostMapping("/bulma/api/mails")
+  String mail(MailRequest mailRequest);
 }

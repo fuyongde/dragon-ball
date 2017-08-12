@@ -9,13 +9,13 @@ import org.springframework.web.client.RestTemplate;
 @SpringCloudApplication
 public class KuririnApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(KuririnApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(KuririnApplication.class, args);
+  }
 
-    @Bean
-    @LoadBalanced
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
+  @Bean
+  @LoadBalanced
+  public RestTemplate restTemplate() {
+    return new RestTemplate();
+  }
 }

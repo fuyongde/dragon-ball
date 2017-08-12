@@ -13,42 +13,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.jms.Destination;
-import javax.jms.Session;
 import javax.jms.TextMessage;
 
 @RestController
 @RequestMapping(value = "/api/mails")
 public class MailRestController {
 
-    @Autowired
-    private BulmaClient bulmaClient;
+  @Autowired
+  Destination destination;
+  @Autowired
+  private BulmaClient bulmaClient;
+  @Autowired
+  private JmsTemplate jmsTemplate;
 
-    @Autowired
-    Destination destination;
-    @Autowired
-    private JmsTemplate jmsTemplate;
 
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public String mail(@RequestBody MailRequest mailRequest) {
+    return bulmaClient.mail(mailRequest);
+  }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String mail(@RequestBody MailRequest mailRequest) {
-        return bulmaClient.mail(mailRequest);
-    }
+  @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public String mailAdd(@RequestBody MailRequest mailRequest) throws JsonProcessingException {
 
-    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String mailAdd(@RequestBody MailRequest mailRequest) throws JsonProcessingException {
+    ObjectMapper mapper = new ObjectMapper();
 
-        ObjectMapper mapper = new ObjectMapper();
+    jmsTemplate.send(destination, (session) -> {
+      TextMessage message = session.createTextMessage();
+      try {
+        message.setText(mapper.writeValueAsString(mailRequest));
+      } catch (JsonProcessingException e) {
+        e.printStackTrace();
+      }
+      return message;
+    });
 
-        jmsTemplate.send(destination, (session) -> {
-            TextMessage message = session.createTextMessage();
-            try {
-                message.setText(mapper.writeValueAsString(mailRequest));
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-            return message;
-        });
-
-        return "success";
-    }
+    return "success";
+  }
 }

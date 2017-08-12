@@ -4,7 +4,7 @@ server:
 
 spring:
   activemq:
-    broker-url: failover:(tcp://activemq1.dafy.com:61616,tcp://activemq2.dafy.com:61616,tcp://activemq3.dafy.com:61616)
+    broker-url: tcp://www.dragon.com:61616
 
 eureka:
   instance:

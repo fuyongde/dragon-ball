@@ -4,17 +4,17 @@ import java.util.Date;
 
 public interface Message {
 
-    String getReplyTo();
+  String getReplyTo();
 
-    String[] getTo();
+  String[] getTo();
 
-    String[] getCc();
+  String[] getCc();
 
-    String[] getBcc();
+  String[] getBcc();
 
-    Date getSentDate();
+  Date getSentDate();
 
-    String getSubject();
+  String getSubject();
 
-    String getText();
+  String getText();
 }

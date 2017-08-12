@@ -4,74 +4,74 @@ import java.util.Date;
 
 public class MailMessage implements Message {
 
-    private String replyTo;
-    private String[] to;
-    private String[] cc;
-    private String[] bcc;
-    private Date sentDate;
-    private String subject;
-    private String text;
+  private String replyTo;
+  private String[] to;
+  private String[] cc;
+  private String[] bcc;
+  private Date sentDate;
+  private String subject;
+  private String text;
 
-    @Override
-    public String getReplyTo() {
-        return replyTo;
-    }
+  @Override
+  public String getReplyTo() {
+    return replyTo;
+  }
 
-    public void setReplyTo(String replyTo) {
-        this.replyTo = replyTo;
-    }
+  public void setReplyTo(String replyTo) {
+    this.replyTo = replyTo;
+  }
 
-    @Override
-    public String[] getTo() {
-        return to;
-    }
+  @Override
+  public String[] getTo() {
+    return to;
+  }
 
-    public void setTo(String[] to) {
-        this.to = to;
-    }
+  public void setTo(String[] to) {
+    this.to = to;
+  }
 
-    @Override
-    public String[] getCc() {
-        return cc;
-    }
+  @Override
+  public String[] getCc() {
+    return cc;
+  }
 
-    public void setCc(String[] cc) {
-        this.cc = cc;
-    }
+  public void setCc(String[] cc) {
+    this.cc = cc;
+  }
 
-    @Override
-    public String[] getBcc() {
-        return bcc;
-    }
+  @Override
+  public String[] getBcc() {
+    return bcc;
+  }
 
-    public void setBcc(String[] bcc) {
-        this.bcc = bcc;
-    }
+  public void setBcc(String[] bcc) {
+    this.bcc = bcc;
+  }
 
-    @Override
-    public Date getSentDate() {
-        return sentDate;
-    }
+  @Override
+  public Date getSentDate() {
+    return sentDate;
+  }
 
-    public void setSentDate(Date sentDate) {
-        this.sentDate = sentDate;
-    }
+  public void setSentDate(Date sentDate) {
+    this.sentDate = sentDate;
+  }
 
-    @Override
-    public String getSubject() {
-        return subject;
-    }
+  @Override
+  public String getSubject() {
+    return subject;
+  }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
+  public void setSubject(String subject) {
+    this.subject = subject;
+  }
 
-    @Override
-    public String getText() {
-        return text;
-    }
+  @Override
+  public String getText() {
+    return text;
+  }
 
-    public void setText(String text) {
-        this.text = text;
-    }
+  public void setText(String text) {
+    this.text = text;
+  }
 }

@@ -15,7 +15,7 @@ public class RegionRestController {
   FriezaClient friezaClient;
 
   @GetMapping("/{id}")
-  public Object region(@PathVariable Integer id){
+  public Object region(@PathVariable Integer id) {
     System.out.println(id);
     return friezaClient.region(id);
   }
