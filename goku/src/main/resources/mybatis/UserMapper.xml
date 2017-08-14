@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jason.goku.repository.UserMapper">
+  <!--auto generated Code-->
+  <resultMap id="AllColumnMap" type="com.jason.goku.entity.User">
+    <result column="id" property="id"/>
+    <result column="username" property="username"/>
+    <result column="mobile" property="mobile"/>
+    <result column="email" property="email"/>
+    <result column="id_card" property="idCard"/>
+    <result column="created" property="created"/>
+    <result column="updated" property="updated"/>
+    <result column="deleted" property="deleted"/>
+  </resultMap>
+
+  <!--auto generated Code-->
+  <sql id="all_column">
+    `id`, `username`, `mobile`, `email`, `id_card`, `created`, `updated`, `deleted`
+  </sql>
+
+  <!--auto generated Code-->
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
+    INSERT INTO `t_user`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pojo.id!=null">`id`,</if>
+      <if test="pojo.username!=null">`username`,</if>
+      <if test="pojo.mobile!=null">`mobile`,</if>
+      <if test="pojo.email!=null">`email`,</if>
+      <if test="pojo.idCard!=null">`id_card`,</if>
+    </trim>
+    VALUES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pojo.id!=null">#{pojo.id},</if>
+      <if test="pojo.username!=null">#{pojo.username},</if>
+      <if test="pojo.mobile!=null">#{pojo.mobile},</if>
+      <if test="pojo.email!=null">#{pojo.email},</if>
+      <if test="pojo.idCard!=null">#{pojo.idCard},</if>
+    </trim>
+  </insert>
+
+  <!--auto generated Code-->
+  <update id="update">
+    UPDATE `t_user`
+    <set>
+      <if test="pojo.id != null">`id` = #{pojo.id},</if>
+      <if test="pojo.username != null">`username` = #{pojo.username},</if>
+      <if test="pojo.mobile != null">`mobile` = #{pojo.mobile},</if>
+      <if test="pojo.email != null">`email` = #{pojo.email},</if>
+      <if test="pojo.idCard != null">`id_card` = #{pojo.idCard},</if>
+      <if test="pojo.deleted != null">`deleted` = #{pojo.deleted}</if>
+    </set>
+    WHERE id = #{pojo.id}
+  </update>
+</mapper>
+

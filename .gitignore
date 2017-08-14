@@ -48,3 +48,9 @@ bulma-api/bulma-api.iml
 bulma-api/.settings
 bulma-api/.classpath
 bulma-api/.project
+
+goku/target
+goku/goku.iml
+goku/.settings
+goku/.classpath
+goku/.project
