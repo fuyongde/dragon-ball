@@ -16,3 +16,5 @@ spring:
     username: root
     password: fuyongde
     driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: redis.dragon.com

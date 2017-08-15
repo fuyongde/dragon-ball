@@ -1,5 +1,6 @@
 package com.jason.goku.service;
 
+import com.google.common.collect.Sets;
 import com.jason.dragon.mapper.BeanMapper;
 import com.jason.dragon.security.Digests;
 import com.jason.dragon.security.Encodes;
@@ -8,13 +9,21 @@ import com.jason.goku.entity.Password;
 import com.jason.goku.entity.User;
 import com.jason.goku.repository.PasswordMapper;
 import com.jason.goku.repository.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     public static final int HASH_INTERATIONS = 1024;
     private static final int SALT_SIZE = 8;
@@ -23,17 +32,18 @@ public class UserService {
     private UserMapper userMapper;
     @Resource
     private PasswordMapper passwordMapper;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Transactional
-    public int register(UserRequest userRequest) {
+    public User register(UserRequest userRequest) {
         User pojo = BeanMapper.map(userRequest, User.class);
         Password password = new Password();
         userMapper.insertSelective(pojo);
         password.setUserId(pojo.getId());
-        password.setPassword(userRequest.getPassword());
-        entryptPassword(password);
+        password.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         passwordMapper.insertSelective(password);
-        return pojo.getId();
+        return pojo;
     }
 
     /**
@@ -45,5 +55,33 @@ public class UserService {
 
         byte[] hashPassword = Digests.sha1(password.getPassword().getBytes(), salt, HASH_INTERATIONS);
         password.setPassword(Encodes.encodeHex(hashPassword));
+    }
+
+    public boolean login(UserRequest userRequest) {
+        User user = userMapper.findByUsername(userRequest.getUsername());
+        if (Objects.isNull(user)) {
+            return false;
+        }
+        Password password = passwordMapper.findByUserId(user.getId());
+        if (Objects.isNull(password)) {
+            return false;
+        }
+        return passwordEncoder.matches(userRequest.getPassword(), password.getPassword());
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userMapper.findByUsername(username);
+        if (Objects.isNull(user)) {
+            return null;
+        }
+        Password password = passwordMapper.findByUserId(user.getId());
+        if (Objects.isNull(password)) {
+            return null;
+        }
+        org.springframework.security.core.userdetails.User u = new org.springframework.security.core.userdetails.User(
+                user.getUsername(), password.getPassword(), Sets.newHashSet(new SimpleGrantedAuthority("admin"))
+        );
+        return u;
     }
 }

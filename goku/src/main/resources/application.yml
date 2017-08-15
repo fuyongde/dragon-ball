@@ -4,6 +4,10 @@ server:
       enabled: true
       prefix: goku_access_log
 
+security:
+  basic:
+    enabled: false
+
 spring:
   application:
     name: goku

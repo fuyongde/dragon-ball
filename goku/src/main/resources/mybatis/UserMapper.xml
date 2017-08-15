@@ -51,5 +51,10 @@
     </set>
     WHERE id = #{pojo.id}
   </update>
+
+  <select id="findByUsername" resultMap="AllColumnMap">
+    SELECT <include refid="all_column"/> FROM `t_user` tu WHERE tu.username = #{username} LIMIT 1
+  </select>
+
 </mapper>
 

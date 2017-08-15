@@ -12,4 +12,6 @@ public interface PasswordMapper {
     int insertSelective(@Param("pojo") Password pojo);
 
     int update(@Param("pojo") Password pojo);
+
+    Password findByUserId(@Param("userId") Integer userId);
 }

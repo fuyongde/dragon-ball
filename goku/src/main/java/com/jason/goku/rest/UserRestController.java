@@ -24,8 +24,13 @@ public class UserRestController {
     @PostMapping
     public User register(@RequestBody UserRequest userRequest) {
         BeanValidators.validateWithException(validator, userRequest);
-        userService.register(userRequest);
-        return null;
+        return userService.register(userRequest);
+    }
+
+    @PostMapping(value = "/login")
+    public boolean login(@RequestBody UserRequest userRequest) {
+        BeanValidators.validateWithException(validator, userRequest);
+        return userService.login(userRequest);
     }
 
 }
