@@ -1,10 +1,8 @@
 package com.jason.goku.repository;
 
+import com.jason.goku.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
-import com.jason.goku.entity.User;
 
 @Mapper
 public interface UserMapper {

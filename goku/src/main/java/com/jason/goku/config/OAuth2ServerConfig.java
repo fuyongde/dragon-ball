@@ -59,5 +59,4 @@ public class OAuth2ServerConfig {
             security.allowFormAuthenticationForClients();
         }
     }
-
 }
