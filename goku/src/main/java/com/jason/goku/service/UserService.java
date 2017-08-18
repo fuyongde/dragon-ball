@@ -7,10 +7,10 @@ import com.jason.dragon.security.Encodes;
 import com.jason.goku.api.request.UserRequest;
 import com.jason.goku.entity.Password;
 import com.jason.goku.entity.User;
+import com.jason.goku.exception.ServiceException;
 import com.jason.goku.repository.PasswordMapper;
 import com.jason.goku.repository.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -58,27 +59,23 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean login(UserRequest userRequest) {
-        User user = userMapper.findByUsername(userRequest.getUsername());
-        if (Objects.isNull(user)) {
-            return false;
-        }
-        Password password = passwordMapper.findByUserId(user.getId());
-        if (Objects.isNull(password)) {
-            return false;
-        }
+        User user = Optional
+                .ofNullable(userMapper.findByUsername(userRequest.getUsername()))
+                .orElseThrow(() -> new ServiceException("用户不存在"));
+        Password password = Optional
+                .ofNullable(passwordMapper.findByUserId(user.getId()))
+                .orElseThrow(() -> new ServiceException("用户不存在"));
         return passwordEncoder.matches(userRequest.getPassword(), password.getPassword());
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userMapper.findByUsername(username);
-        if (Objects.isNull(user)) {
-            return null;
-        }
-        Password password = passwordMapper.findByUserId(user.getId());
-        if (Objects.isNull(password)) {
-            return null;
-        }
+        User user = Optional
+                .ofNullable(userMapper.findByUsername(username))
+                .orElseThrow(() -> new ServiceException("用户不存在"));
+        Password password = Optional
+                .ofNullable(passwordMapper.findByUserId(user.getId()))
+                .orElseThrow(() -> new ServiceException("用户不存在"));
         org.springframework.security.core.userdetails.User u = new org.springframework.security.core.userdetails.User(
                 user.getUsername(), password.getPassword(), Sets.newHashSet(new SimpleGrantedAuthority("admin"))
         );
