@@ -1,13 +1,16 @@
+CREATE DATABASE qucikstart DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
 DROP TABLE IF EXISTS `region`;
 
 CREATE TABLE `region` (
-  `id` INT(11) NOT NULL,
-  `parent_id` INT(11) NOT NULL DEFAULT '0',
-  `name` VARCHAR(64) NOT NULL DEFAULT '',
-  `level` TINYINT(6) NOT NULL DEFAULT '0',
-  `leaf` TINYINT(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` BIGINT(19) UNSIGNED NOT NULL COMMENT '区域ID',
+  `parent_id` BIGINT(19) UNSIGNED NOT NULL DEFAULT '0' COMMENT '父级ID',
+  `name` VARCHAR(64) NOT NULL DEFAULT '' COMMENT '地区名称',
+  `level` TINYINT(6) NOT NULL DEFAULT '0' COMMENT '等级(省=1级|市=2级|区=3级)',
+  `leaf` TINYINT(4) NOT NULL DEFAULT '0' COMMENT '是否为叶子节点（通常3级的区为叶子节点）',
+  PRIMARY KEY (`id`),
+  KEY `idx_parent_id` (`parent_id`) USING BTREE
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 INSERT INTO `region` (`id`, `parent_id`, `name`, `level`, `leaf`) VALUES ('110000','0','北京市','1','0');
 INSERT INTO `region` (`id`, `parent_id`, `name`, `level`, `leaf`) VALUES ('110100','110000','市辖区','2','0');
