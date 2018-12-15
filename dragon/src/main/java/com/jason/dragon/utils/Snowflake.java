@@ -8,8 +8,8 @@ class Snowflake {
   private static final int SEQ_SHIFT = 12;
 
   private static final short MIN_NODE = 0;
-  private static final short MAX_NODE = 1024;
-  private static final short MAX_SEQUENCE = 4096;
+  private static final short MAX_NODE = 1023;
+  private static final short MAX_SEQUENCE = 4095;
 
   private short sequence;
   private long referenceTime;
